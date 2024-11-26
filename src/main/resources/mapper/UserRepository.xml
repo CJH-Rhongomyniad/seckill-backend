@@ -21,8 +21,8 @@
 
     <!-- 保存用户 -->
     <insert id="save" parameterType="com.example.backend.model.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO users (username, password, email)
-        VALUES (#{username}, #{password}, #{email})
+        INSERT INTO users (username, password, email, status)
+        VALUES (#{username}, #{password}, #{email}, 'ENABLED')
     </insert>
 
 </mapper>

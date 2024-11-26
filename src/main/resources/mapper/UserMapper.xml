@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.backend.mapper.UserMapper">
+
+    <select id="findByUsername" parameterType="string" resultType="com.example.backend.entity.User">
+        SELECT * FROM t_user WHERE username = #{username}
+    </select>
+
+    <select id="findByEmail" resultType="com.example.backend.entity.User">
+        SELECT * FROM t_user WHERE email = #{email}
+    </select>
+
+    <select id="findByMobile" resultType="com.example.backend.entity.User">
+        SELECT * FROM t_user WHERE mobile = #{mobile}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_user(username, password, salt, email, mobile, register_date)
+        VALUES(#{username}, #{password}, #{salt}, #{email}, #{mobile}, #{registerDate})
+    </insert>
+
+    <select id="login" parameterType="map" resultType="com.example.backend.entity.User">
+        SELECT * FROM t_user
+        WHERE username = #{username} AND password = #{password}
+    </select>
+
+    <update id="update" parameterType="com.example.backend.entity.User">
+        UPDATE t_user
+        SET last_login_date = #{lastLoginDate}, login_count = #{loginCount}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
